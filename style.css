@@ -10,3 +10,51 @@ body {
   animation: moveStars 30s linear infinite;
 }
 
+@keyframes moveStars {
+  from {
+      background-position: 0 0;
+  }
+  to {
+      background-position: 100% 100%;
+  }
+}
+
+header h1 {
+  font-size: 3.5rem;
+}
+
+header p {
+  font-size: 1.8rem;
+}
+
+.search-bar {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.categories h2 {
+  font-size: 2.5rem;
+}
+
+button {
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.1);
+  background-color: #ffc107;
+}
+
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 20px;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #ffc107;
+}
+
+footer {
+  font-size: 1rem;
+}
+
