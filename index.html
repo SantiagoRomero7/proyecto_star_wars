@@ -26,7 +26,27 @@
   </div>
 
 
- 
+  <div id="mainContent" class="bg-stars d-none">
+    <header class="text-center py-4 border-bottom border-warning">
+      <h1 class="text-warning fw-bold animate__animated animate__fadeInDown">Buscador Galáctico</h1>
+      <p class="text-white-50 animate__animated animate__fadeInUp">Explora el universo de Star Wars</p>
+    </header>
+
+
+    <section class="search-bar py-3 bg-dark text-light">
+      <div class="container text-center">
+        <form class="d-flex justify-content-center" onsubmit="search(event)">
+          <input id="searchInput" class="form-control me-2 w-50" type="search"
+            placeholder="Buscar por personajes, películas, etc." aria-label="Search">
+          <button class="btn btn-warning btn-lg" type="submit">Buscar</button>
+        </form>
+      </div>
+    </section>
+
+
+    
+
+  <script src="./main.js"></script>
 </body>
 
 </html>
