@@ -104,3 +104,65 @@ function enterSite() {
   document.getElementById('welcomeScreen').classList.add('d-none');
   document.getElementById('mainContent').classList.remove('d-none');
 }
+
+
+async function search(event) {
+  event.preventDefault(); 
+
+
+  const query = document.getElementById('searchInput').value.toLowerCase();
+  console.log(`Buscando: ${query}`);
+
+  const content = document.getElementById("content");
+  content.innerHTML = `<div class="spinner-border text-warning" role="status"><span class="visually-hidden">Cargando...</span></div>`;
+
+  try {
+   
+    const categories = ['people', 'films', 'planets', 'starships', 'vehicles', 'species'];
+    let results = [];
+
+    for (const category of categories) {
+      const response = await fetch(`${API_URL}${category}/`);
+      if (!response.ok) {
+        throw new Error(`Error al cargar datos de la categoría ${category}: ${response.status}`);
+      }
+      const data = await response.json();
+
+     
+      const filteredResults = data.results.filter(item => {
+        const nameOrTitle = item.name || item.title || '';
+        return nameOrTitle.toLowerCase().includes(query);
+      });
+
+      results = results.concat(filteredResults.map(item => ({ ...item, category })));
+    }
+
+ 
+    if (results.length > 0) {
+      displaySearchResults(results);
+    } else {
+      content.innerHTML = `<p class="text-warning">No se encontraron resultados para "${query}".</p>`;
+    }
+  } catch (error) {
+    console.error(error);
+    content.innerHTML = `<p class="text-danger">Error al realizar la búsqueda: ${error.message}</p>`;
+  }
+}
+
+function displaySearchResults(results) {
+  const content = document.getElementById("content");
+  content.innerHTML = results.map(item => {
+    const category = item.category;
+    const nameOrTitle = item.name || item.title;
+    return `
+      <div class="col-md-4">
+        <div class="card bg-dark text-light">
+          <div class="card-body">
+            <h5 class="card-title">${nameOrTitle}</h5>
+            <p class="card-text">Categoría: ${category}</p>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
