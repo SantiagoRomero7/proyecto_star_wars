@@ -1,16 +1,16 @@
 const API_URL = "https://swapi.py4e.com/api/";
 
 const characterImages = {
-  "Luke Skywalker": "./skywalker.jpg",
-  "Darth Vader": "./darthvader.jpg",
-  "Leia Organa": "./leiaorgana.jpg",
-  "Obi-Wan Kenobi": "./obiwan.jpg",
-  "C-3PO": "./c3po.jpg",
-  "R2-D2": "./r2d2.jpg",
-  "R5-D4": "./r5d4.jpg",
-  "Owen Lars": "./owenlars.jpg",
-  "Beru Whitesun lars": "./beru.jpg",
-  "Biggs Darklighter": "./biggs.jpg",
+  "Luke Skywalker": "./img/skywalker.jpg",
+  "Darth Vader": "./img/darthvader.jpg",
+  "Leia Organa": "./img/leiaorgana.jpg",
+  "Obi-Wan Kenobi": "./img/obiwan.jpg",
+  "C-3PO": "./img/c3po.jpg",
+  "R2-D2": "./img/r2d2.jpg",
+  "R5-D4": "./img/r5d4.jpg",
+  "Owen Lars": "./img/owenlars.jpg",
+  "Beru Whitesun lars": "./img/beru.jpg",
+  "Biggs Darklighter": "./img/biggs.jpg",
 
 };
 
