@@ -241,3 +241,32 @@ function redirectToSection(category, url) {
     showDetails(category, url);
   }, 500);
 }
+
+async function loadSection(section) {
+  const content = document.getElementById("content");
+
+  content.classList.add('animate__animated', 'animate__fadeOut');
+  
+  setTimeout(async () => {
+    content.innerHTML = `<div class="spinner-border text-warning" role="status"><span class="visually-hidden">Cargando...</span></div>`;
+    content.classList.remove('animate__fadeOut'); 
+
+    try {
+      const response = await fetch(`${API_URL}${section}/`);
+      if (!response.ok) {
+        throw new Error(`Error al cargar datos: ${response.status}`);
+      }
+      const data = await response.json();
+      if (data.results) {
+        displayData(data.results, section);
+      } else {
+        content.innerHTML = `<p class="text-danger">No se encontraron resultados</p>`;
+      }
+    } catch (error) {
+      console.error(error);
+      content.innerHTML = `<p class="text-danger">Error al cargar datos: ${error.message}</p>`;
+    }
+
+    content.classList.add('animate__animated', 'animate__fadeIn');
+  }, 500); 
+}
