@@ -77,3 +77,25 @@ function getDetails(item, section) {
       return 'Detalles no disponibles';
   }
 }
+
+async function showDetails(section, url) {
+  const modalContent = document.getElementById("modalContent");
+  modalContent.innerHTML = `<div class="spinner-border text-warning" role="status"><span class="visually-hidden">Cargando...</span></div>`;
+  
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Error al cargar detalles: ${response.status}`);
+    }
+    const item = await response.json();
+    modalContent.innerHTML = `
+      <h5>${item.name || item.title}</h5>
+      <p>${getDetails(item, section)}</p>
+    `;
+    const modal = new bootstrap.Modal(document.getElementById('detailsModal'));
+    modal.show();
+  } catch (error) {
+    console.error(error);
+    modalContent.innerHTML = `<p class="text-danger">Error al cargar detalles: ${error.message}</p>`;
+  }
+}
