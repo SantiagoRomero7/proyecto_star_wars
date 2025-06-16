@@ -11,7 +11,42 @@ const characterImages = {
   "Owen Lars": "./img/owenlars.jpg",
   "Beru Whitesun lars": "./img/beru.jpg",
   "Biggs Darklighter": "./img/biggs.jpg",
+};
 
+const filmImages = {
+  "A New Hope": "./img/a_new_hope.jpg",
+  "The Empire Strikes Back": "./img/the_empire_strikes_back.jpg",
+  "Return of the Jedi": "./img/return_of_the_jedi.jpg",
+  "The Phantom Menace": "./img/the_phantom_menace.jpg",
+  "Attack of the Clones": "./img/attack_of_the_clones.jpg",
+  "Revenge of the Sith": "./img/evenge_of_the_sith.jpg",
+  "The Force Awakens": "./img/the_force_awakens.jpg",
+};
+
+const planetImages = {
+  "Tatooine": "./img/tatooine.jpg",
+  "Alderaan": "./img/alderaan.jpg",
+  "Yavin IV": "./img/yavin_iv.jpg",
+  "Hoth": "./img/hoth.jpg",
+  "Dagobah": "./img/dagobah.jpg",
+  "Bespin": "./img/bespin.jpg",
+  "Endor": "./img/endor.jpg",
+  "Naboo": "./img/naboo.jpg",
+  "Coruscant": "./img/coruscant.jpg",
+  "Kamino": "./img/kamino.jpg",
+};
+
+const starshipImages = {
+  "CR90 corvette": "./img/cr90_corvette.jpg",
+  "Star Destroyer": "./img/star_destroyer.jpg",
+  "Sentinel-class landing craft": "./img/sentinel_landing_craft.jpg",
+  "Death Star": "./img/death_star.jpg",
+  "Millennium Falcon": "./img/millennium_falcon.jpg",
+  "Y-wing": "./img/y_wing.jpg",
+  "X-wing": "./img/x_wing.jpg",
+  "TIE Advanced x1": "./img/tie_advanced.jpg",
+  "Executor": "./img/executor.jpg",
+  "Rebel transport": "./img/rebel_transport.jpg",
 };
 
 
@@ -25,7 +60,6 @@ async function loadSection(section) {
       throw new Error(`Error al cargar datos: ${response.status}`);
     }
     const data = await response.json();
-    console.log(data); 
     if (data.results) {
       displayData(data.results, section);
     } else {
@@ -44,11 +78,24 @@ function displayData(items, section) {
     return;
   }
   content.innerHTML = items.map(item => {
-    const imageUrl = characterImages[item.name] || "./images/default.jpg"; // Usa una imagen por defecto si no hay coincidencia
+    let imageUrl;
+
+    if (section === 'films') {
+      imageUrl = filmImages[item.title] || "./images/default.jpg";
+    } else if (section === 'planets') {
+      imageUrl = planetImages[item.name] || "./images/default.jpg";
+    } else if (section === 'starships') {
+      imageUrl = starshipImages[item.name] || "./images/default.jpg";
+    } else if (section === 'vehicles') {
+      imageUrl = vehicleImages[item.name] || "./images/default.jpg";
+    } else {
+      imageUrl = characterImages[item.name] || "./images/default.jpg";
+    }
+
     return `
       <div class="col-md-4">
         <div class="card bg-dark text-light" onclick="showDetails('${section}', '${item.url}')">
-          <img src="${imageUrl}" class="card-img-top img-fluid" alt="${item.name}">
+          <img src="${imageUrl}" class="card-img-top img-fluid" alt="${item.title || item.name}">
           <div class="card-body">
             <h5 class="card-title">${item.name || item.title}</h5>
             <p class="card-text">${getDetails(item, section)}</p>
@@ -58,7 +105,6 @@ function displayData(items, section) {
     `;
   }).join('');
 }
-
 function getDetails(item, section) {
   switch (section) {
     case 'people':
@@ -105,19 +151,14 @@ function enterSite() {
   document.getElementById('mainContent').classList.remove('d-none');
 }
 
-
 async function search(event) {
   event.preventDefault(); 
 
-
   const query = document.getElementById('searchInput').value.toLowerCase();
-  console.log(`Buscando: ${query}`);
-
   const content = document.getElementById("content");
   content.innerHTML = `<div class="spinner-border text-warning" role="status"><span class="visually-hidden">Cargando...</span></div>`;
 
   try {
-   
     const categories = ['people', 'films', 'planets', 'starships', 'vehicles', 'species'];
     let results = [];
 
@@ -128,7 +169,6 @@ async function search(event) {
       }
       const data = await response.json();
 
-     
       const filteredResults = data.results.filter(item => {
         const nameOrTitle = item.name || item.title || '';
         return nameOrTitle.toLowerCase().includes(query);
@@ -137,7 +177,6 @@ async function search(event) {
       results = results.concat(filteredResults.map(item => ({ ...item, category })));
     }
 
- 
     if (results.length > 0) {
       displaySearchResults(results);
     } else {
@@ -160,6 +199,7 @@ function displaySearchResults(results) {
           <div class="card-body">
             <h5 class="card-title">${nameOrTitle}</h5>
             <p class="card-text">Categoría: ${category}</p>
+            <button class="btn btn-warning" onclick="redirectToSection('${category}', '${item.url}')">Ver detalles</button>
           </div>
         </div>
       </div>
@@ -167,85 +207,9 @@ function displaySearchResults(results) {
   }).join('');
 }
 
-const filmImages = {
-  "A New Hope": "./img/a_new_hope.jpg",
-  "The Empire Strikes Back": "./img/the_empire_strikes_back.jpg",
-  "Return of the Jedi": "./img/return_of_the_jedi.jpg",
-  "The Phantom Menace": "./img/the_phantom_menace.jpg",
-  "Attack of the Clones": "./img/attack_of_the_clones.jpg",
-  "Revenge of the Sith": "./img/evenge_of_the_sith.jpg",
-  "The Force Awakens": "./img/the_force_awakens.jpg",
-};
-
-function displayData(items, section) {
-  const content = document.getElementById("content");
-  if (!items || items.length === 0) {
-    content.innerHTML = `<p class="text-warning">No hay datos disponibles para esta sección.</p>`;
-    return;
-  }
-  content.innerHTML = items.map(item => {
-    let imageUrl;
-
-    if (section === 'films') {
-      imageUrl = filmImages[item.title] || "./images/default.jpg"; 
-    } else {
-      imageUrl = characterImages[item.name] || "./images/default.jpg"; 
-    }
-
-    return `
-      <div class="col-md-4">
-        <div class="card bg-dark text-light" onclick="showDetails('${section}', '${item.url}')">
-          <img src="${imageUrl}" class="card-img-top img-fluid" alt="${item.title || item.name}">
-          <div class="card-body">
-            <h5 class="card-title">${item.name || item.title}</h5>
-            <p class="card-text">${getDetails(item, section)}</p>
-          </div>
-        </div>
-      </div>
-    `;
-  }).join('');
-}
-
-const planetImages = {
-  "Tatooine": "./img/tatooine.jpg",
-  "Alderaan": "./img/alderaan.jpg",
-  "Yavin IV": "./img/yavin_iv.jpg",
-  "Hoth": "./img/hoth.jpg",
-  "Dagobah": "./img/dagobah.jpg",
-  "Bespin": "./img/bespin.jpg",
-  "Endor": "./img/endor.jpg",
-  "Naboo": "./img/naboo.jpg",
-  "Coruscant": "./img/coruscant.jpg",
-  "Kamino": "./img/kamino.jpg",
-};
-
-function displayData(items, section) {
-  const content = document.getElementById("content");
-  if (!items || items.length === 0) {
-    content.innerHTML = `<p class="text-warning">No hay datos disponibles para esta sección.</p>`;
-    return;
-  }
-  content.innerHTML = items.map(item => {
-    let imageUrl;
-
-    if (section === 'films') {
-      imageUrl = filmImages[item.title] || "./images/default.jpg";
-    } else if (section === 'planets') {
-      imageUrl = planetImages[item.name] || "./images/default.jpg";
-    } else {
-      imageUrl = characterImages[item.name] || "./images/default.jpg";
-    }
-
-    return `
-      <div class="col-md-4">
-        <div class="card bg-dark text-light" onclick="showDetails('${section}', '${item.url}')">
-          <img src="${imageUrl}" class="card-img-top img-fluid" alt="${item.title || item.name}">
-          <div class="card-body">
-            <h5 class="card-title">${item.name || item.title}</h5>
-            <p class="card-text">${getDetails(item, section)}</p>
-          </div>
-        </div>
-      </div>
-    `;
-  }).join('');
+function redirectToSection(category, url) {
+  loadSection(category);
+  setTimeout(() => {
+    showDetails(category, url);
+  }, 500);
 }
