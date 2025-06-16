@@ -49,6 +49,19 @@ const starshipImages = {
   "Rebel transport": "./img/rebel_transport.jpg",
 };
 
+const vehicleImages = {
+  "Sand Crawler": "./img/sand_crawler.jpg",
+  "T-16 skyhopper": "./img/t16_skyhopper.jpg",
+  "X-34 landspeeder": "./img/34_landspeeder.jpg",
+  "TIE/LN starfighter": "./img/tie_ln_starfighter.jpg",
+  "Snowspeeder": "./img/snowspeeder.jpg",
+  "TIE bomber": "./img/tie_bomber.jpg",
+  "AT-AT": "./img/at_at.jpg",
+  "AT-ST": "./img/at_st.jpg",
+  "Storm IV Twin-Pod cloud car": "./img/cloud_car.jpg",
+  "Sail barge": "./img/sail_barge.jpg",
+};
+
 
 async function loadSection(section) {
   const content = document.getElementById("content");
