@@ -36,3 +36,25 @@ async function loadSection(section) {
     content.innerHTML = `<p class="text-danger">Error al cargar datos: ${error.message}</p>`;
   }
 }
+
+function displayData(items, section) {
+  const content = document.getElementById("content");
+  if (!items || items.length === 0) {
+    content.innerHTML = `<p class="text-warning">No hay datos disponibles para esta sección.</p>`;
+    return;
+  }
+  content.innerHTML = items.map(item => {
+    const imageUrl = characterImages[item.name] || "./images/default.jpg"; // Usa una imagen por defecto si no hay coincidencia
+    return `
+      <div class="col-md-4">
+        <div class="card bg-dark text-light" onclick="showDetails('${section}', '${item.url}')">
+          <img src="${imageUrl}" class="card-img-top img-fluid" alt="${item.name}">
+          <div class="card-body">
+            <h5 class="card-title">${item.name || item.title}</h5>
+            <p class="card-text">${getDetails(item, section)}</p>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
