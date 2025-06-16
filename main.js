@@ -99,3 +99,8 @@ async function showDetails(section, url) {
     modalContent.innerHTML = `<p class="text-danger">Error al cargar detalles: ${error.message}</p>`;
   }
 }
+
+function enterSite() {
+  document.getElementById('welcomeScreen').classList.add('d-none');
+  document.getElementById('mainContent').classList.remove('d-none');
+}
