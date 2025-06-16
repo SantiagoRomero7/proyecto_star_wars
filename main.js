@@ -166,3 +166,42 @@ function displaySearchResults(results) {
     `;
   }).join('');
 }
+
+const filmImages = {
+  "A New Hope": "./img/a_new_hope.jpg",
+  "The Empire Strikes Back": "./img/the_empire_strikes_back.jpg",
+  "Return of the Jedi": "./img/return_of_the_jedi.jpg",
+  "The Phantom Menace": "./img/the_phantom_menace.jpg",
+  "Attack of the Clones": "./img/attack_of_the_clones.jpg",
+  "Revenge of the Sith": "./img/evenge_of_the_sith.jpg",
+  "The Force Awakens": "./img/the_force_awakens.jpg",
+};
+
+function displayData(items, section) {
+  const content = document.getElementById("content");
+  if (!items || items.length === 0) {
+    content.innerHTML = `<p class="text-warning">No hay datos disponibles para esta sección.</p>`;
+    return;
+  }
+  content.innerHTML = items.map(item => {
+    let imageUrl;
+
+    if (section === 'films') {
+      imageUrl = filmImages[item.title] || "./images/default.jpg"; 
+    } else {
+      imageUrl = characterImages[item.name] || "./images/default.jpg"; 
+    }
+
+    return `
+      <div class="col-md-4">
+        <div class="card bg-dark text-light" onclick="showDetails('${section}', '${item.url}')">
+          <img src="${imageUrl}" class="card-img-top img-fluid" alt="${item.title || item.name}">
+          <div class="card-body">
+            <h5 class="card-title">${item.name || item.title}</h5>
+            <p class="card-text">${getDetails(item, section)}</p>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
