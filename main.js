@@ -58,3 +58,22 @@ function displayData(items, section) {
     `;
   }).join('');
 }
+
+function getDetails(item, section) {
+  switch (section) {
+    case 'people':
+      return `Altura: ${item.height} cm<br>Género: ${item.gender}<br>Color de ojos: ${item.eye_color}`;
+    case 'films':
+      return `Director: ${item.director}<br>Fecha de lanzamiento: ${item.release_date}<br>Productor: ${item.producer}`;
+    case 'planets':
+      return `Clima: ${item.climate}<br>Terreno: ${item.terrain}<br>Población: ${item.population}`;
+    case 'starships':
+      return `Modelo: ${item.model}<br>Capacidad: ${item.passengers}<br>Fabricante: ${item.manufacturer}`;
+    case 'vehicles':
+      return `Modelo: ${item.model}<br>Capacidad: ${item.passengers}<br>Clase: ${item.vehicle_class}`;
+    case 'species':
+      return `Clasificación: ${item.classification}<br>Idioma: ${item.language}<br>Esperanza de vida: ${item.average_lifespan}`;
+    default:
+      return 'Detalles no disponibles';
+  }
+}
