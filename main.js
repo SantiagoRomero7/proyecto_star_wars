@@ -205,3 +205,17 @@ function displayData(items, section) {
     `;
   }).join('');
 }
+
+const planetImages = {
+  "Tatooine": "./img/tatooine.jpg",
+  "Alderaan": "./img/alderaan.jpg",
+  "Yavin IV": "./img/yavin_iv.jpg",
+  "Hoth": "./img/hoth.jpg",
+  "Dagobah": "./img/dagobah.jpg",
+  "Bespin": "./img/bespin.jpg",
+  "Endor": "./img/endor.jpg",
+  "Naboo": "./img/naboo.jpg",
+  "Coruscant": "./img/coruscant.jpg",
+  "Kamino": "./img/kamino.jpg",
+};
+
