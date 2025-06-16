@@ -62,6 +62,18 @@ const vehicleImages = {
   "Sail barge": "./img/sail_barge.jpg",
 };
 
+const speciesImages = {
+  "Human": "./img/human.jpg",
+  "Droid": "./img/droid.jpg",
+  "Wookiee": "./img/wookiee.jpg",
+  "Rodian": "./img/rodian.jpg",
+  "Hutt": "./img/hutt.jpg",
+  "Yoda's species": "./img/yoda_species.jpg",
+  "Trandoshan": "./img/trandoshan.jpg",
+  "Mon Calamari": "./img/mon_calamari.jpg",
+  "Ewok": "./img/ewok.jpg",
+  "Sullustan": "./img/sullustan.jpg",
+};
 
 async function loadSection(section) {
   const content = document.getElementById("content");
@@ -101,6 +113,8 @@ function displayData(items, section) {
       imageUrl = starshipImages[item.name] || "./images/default.jpg";
     } else if (section === 'vehicles') {
       imageUrl = vehicleImages[item.name] || "./images/default.jpg";
+    } else if (section === 'species') {
+      imageUrl = speciesImages[item.name] || "./images/default.jpg";
     } else {
       imageUrl = characterImages[item.name] || "./images/default.jpg";
     }
@@ -118,6 +132,7 @@ function displayData(items, section) {
     `;
   }).join('');
 }
+
 function getDetails(item, section) {
   switch (section) {
     case 'people':
