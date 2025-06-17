@@ -1,4 +1,4 @@
-# 🌌 Proyecto Star Wars - Explorador Galáctico
+# 🌌 Proyecto Star Wars - Portal Galáctico
 
 ![alt text](image.png)
 
@@ -17,14 +17,43 @@ Este proyecto es una aplicación web interactiva construida con **HTML**, **CSS*
 
 ---
 
+## 🎯 Objetivo del Proyecto
+Este proyecto fue desarrollado con fines educativos como práctica para el consumo de APIs, manejo del DOM y estilos CSS. No utiliza frameworks para demostrar cómo crear SPA simples con JavaScript puro.
+
+## 💡 Mejoras futuras
+
+✅ Paginación de resultados.
+
+✅ Filtrado por especies/género.
+
+✅ Integrar más categorías (films, vehicles).
+
+🌈 Modo oscuro/claro.
+
+⚙️ Animaciones y transición de vistas.
+
+🛠️ Optimización responsive completa.
+
+
 ## 🧠 Tecnologías utilizadas
 
 - ⚙️ **HTML5**
 - 🎨 **CSS3**
 - 🧠 **JavaScript Vanila (Puro)**
-- 🔗 **SWAPI REST API** (https://swapi.py4e.com/api/)
+- 🔗 **API Utilizada** (https://swapi.py4e.com/api/)
 
 ---
+
+## 👨‍💻 Desarrolladores 
+
+
+🔗 GitHub: @SantiagoRomero7
+
+🔗 GitHub: @Nik1304
+
+---
+
+
 
 ## 📁 Estructura del proyecto
 
@@ -34,6 +63,9 @@ proyecto_star_wars/
 ├── css/
 │   └── styles.css      # Estilos principales
 ├── js/
-│   └── main.js         # Lógica de interacción y peticiones a la API
+│   └── main.js     # Lógica de interacción y peticiones a la API
 ├── index.html          # Página principal
 └── README.md           # Documentación del proyecto
+
+
+
