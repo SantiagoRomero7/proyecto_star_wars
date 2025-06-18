@@ -42,6 +42,11 @@ Este proyecto fue desarrollado con fines educativos como práctica para el consu
 - 🧠 **JavaScript Vanila (Puro)**
 - 🔗 **API Utilizada** (https://swapi.py4e.com/api/)
 
+- ![image](https://github.com/user-attachments/assets/a092a45a-eb0c-42e1-9b2a-2dbadaf656cc)
+![image](https://github.com/user-attachments/assets/defc3bbd-b639-4a36-b91c-b3ec996ebe09)
+![image](https://github.com/user-attachments/assets/be513b5b-98f0-4ffb-aa0a-9492faec8d04)
+
+
 ---
 
 ## 👨‍💻 Desarrolladores 
@@ -68,9 +73,6 @@ proyecto_star_wars/
 └── README.md           # Documentación del proyecto
 
 
-![image](https://github.com/user-attachments/assets/a092a45a-eb0c-42e1-9b2a-2dbadaf656cc)
-![image](https://github.com/user-attachments/assets/defc3bbd-b639-4a36-b91c-b3ec996ebe09)
-![image](https://github.com/user-attachments/assets/be513b5b-98f0-4ffb-aa0a-9492faec8d04)
 
 
 
